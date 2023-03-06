@@ -5,6 +5,7 @@ const StyledColorBox = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  transition: filter 0.3s;
 
   &:nth-of-type(1) {
     flex: 1 1 80%;

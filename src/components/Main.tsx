@@ -197,7 +197,6 @@ const Main = () => {
         stylesHasStarted={stylesHasStarted}
       />
       <Result
-        hasStarted={hasStarted}
         hasMoved={hasMoved}
         guessClr={guessClr}
         confirmColor={confirmColor}
