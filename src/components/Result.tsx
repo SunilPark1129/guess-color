@@ -6,21 +6,22 @@ const StyledResult = styled.section`
   flex: 1 1 100%;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 `;
 
 const StyledCompare = styled.div`
   position: absolute;
-  height: 40px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 0;
+  top: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
 
   p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: auto;
     z-index: 9;
-    height: 100%;
     color: #e6e6e6;
     text-shadow: 1px 1px 2px black;
     width: 4rem;
@@ -31,6 +32,7 @@ const StyledCompare = styled.div`
 const StyledOutput = styled.div`
   width: 100%;
   height: 40px;
+
   &:nth-of-type(1) {
     border-right: none;
     border-top-left-radius: 4px;

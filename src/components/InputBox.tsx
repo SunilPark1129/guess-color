@@ -31,16 +31,16 @@ const StyledColorInput = styled.input`
     height: 40px;
     border-radius: 2px;
     box-shadow: 0px 0px 20px 5px #0000008b;
-    border: 1px solid #4d4d4d85;
-    background-color: red;
+    border: 1px solid #c7c7c785;
+    background-color: #8d8d8d7d;
   }
   &::-webkit-scrollbar-thumb {
     width: 10px;
     height: 40px;
     border-radius: 2px;
     box-shadow: 0px 0px 20px 5px #0000008b;
-    border: 1px solid #4d4d4d85;
-    background-color: red;
+    border: 1px solid #c7c7c785;
+    background-color: #8d8d8d7d;
   }
 `;
 
@@ -48,17 +48,19 @@ type ContainerProps = {
   currentClr: { red: number; green: number; blue: number };
   isCalculating: boolean;
   colorChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  styles: React.CSSProperties;
+  styleIsCalulating: React.CSSProperties;
+  stylesHasStarted: React.CSSProperties;
 };
 
 const InputBox = ({
   currentClr,
   isCalculating,
   colorChangeHandler,
-  styles,
+  styleIsCalulating,
+  stylesHasStarted,
 }: ContainerProps) => {
   return (
-    <StyledColorBox>
+    <StyledColorBox style={stylesHasStarted}>
       <StyledColorInput
         type="range"
         name="red"
@@ -66,8 +68,8 @@ const InputBox = ({
         max={255}
         value={currentClr.red}
         style={{
-          ...styles,
-          backgroundColor: `rgb(${currentClr.red},0,0)`,
+          ...styleIsCalulating,
+          background: `linear-gradient(to right, black, red)`,
         }}
         disabled={isCalculating}
         onChange={colorChangeHandler}
@@ -79,8 +81,8 @@ const InputBox = ({
         max={255}
         value={currentClr.green}
         style={{
-          ...styles,
-          backgroundColor: `rgb(0,${currentClr.green},0)`,
+          ...styleIsCalulating,
+          background: `linear-gradient(to right, black, green)`,
         }}
         disabled={isCalculating}
         onChange={colorChangeHandler}
@@ -92,8 +94,8 @@ const InputBox = ({
         max={255}
         value={currentClr.blue}
         style={{
-          ...styles,
-          backgroundColor: `rgb(0,0,${currentClr.blue})`,
+          ...styleIsCalulating,
+          background: `linear-gradient(to right, black, blue)`,
         }}
         disabled={isCalculating}
         onChange={colorChangeHandler}

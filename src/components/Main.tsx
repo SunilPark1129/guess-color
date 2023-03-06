@@ -164,10 +164,19 @@ const Main = () => {
     }
   }
 
-  const styles = {
-    filter: `${isCalculating ? "brightness(50%)" : "brightness(100%)"}`,
-    cursor: `${isCalculating ? "not-allowed" : "pointer"}`,
-  };
+  const styleIsCalulating = isCalculating
+    ? {
+        filter: "brightness(50%)",
+        cursor: "not-allowed",
+      }
+    : {
+        filter: "brightness(100%)",
+        cursor: "pointer",
+      };
+
+  const stylesHasStarted = hasStarted
+    ? { filter: "brightness(100%)" }
+    : { filter: "brightness(50%)" };
 
   return (
     <StyledMain>
@@ -176,13 +185,16 @@ const Main = () => {
         currentClr={currentClr}
         isCalculating={isCalculating}
         colorChangeHandler={colorChangeHandler}
-        styles={styles}
+        styleIsCalulating={styleIsCalulating}
+        stylesHasStarted={stylesHasStarted}
       />
       <ColorStatus
+        currentClr={currentClr}
         confirmColor={confirmColor}
         isCalculating={isCalculating}
         colorClickHandler={colorClickHandler}
-        styles={styles}
+        styleIsCalulating={styleIsCalulating}
+        stylesHasStarted={stylesHasStarted}
       />
       <Result
         hasStarted={hasStarted}

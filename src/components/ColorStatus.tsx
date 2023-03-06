@@ -21,56 +21,57 @@ const StylesColorStatus = styled.button`
 `;
 
 type ContainerProps = {
+  currentClr: { red: number; green: number; blue: number };
   confirmColor: { red: number; green: number; blue: number };
   isCalculating: boolean;
   colorClickHandler: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  styles: React.CSSProperties;
+  styleIsCalulating: React.CSSProperties;
+  stylesHasStarted: React.CSSProperties;
 };
 
 const ColorStatus = ({
+  currentClr,
   confirmColor,
   isCalculating,
   colorClickHandler,
-  styles,
+  styleIsCalulating,
+  stylesHasStarted,
 }: ContainerProps) => {
   return (
-    <StyledColorBox>
+    <StyledColorBox style={stylesHasStarted}>
       <StylesColorStatus
         id="red"
-        style={
-          confirmColor.red !== 256
-            ? {
-                ...styles,
-                backgroundColor: `rgb(${confirmColor.red},0,0)`,
-              }
-            : { backgroundColor: "#fff" }
-        }
+        style={{
+          ...styleIsCalulating,
+          backgroundColor: `rgb(${currentClr.red},0,0)`,
+          outline: `3px solid ${
+            currentClr.red !== confirmColor.red ? "#d8ddc1" : "transparent"
+          }`,
+        }}
         disabled={isCalculating}
         onClick={colorClickHandler}
       ></StylesColorStatus>
       <StylesColorStatus
         id="green"
-        style={
-          confirmColor.green !== 256
-            ? {
-                ...styles,
-                backgroundColor: `rgb(0,${confirmColor.green},0)`,
-              }
-            : { backgroundColor: "#fff" }
-        }
+        style={{
+          ...styleIsCalulating,
+          backgroundColor: `rgb(0,${currentClr.green},0)`,
+          outline: `3px solid ${
+            currentClr.green !== confirmColor.green ? "#d8ddc1" : "transparent"
+          }`,
+        }}
         disabled={isCalculating}
         onClick={colorClickHandler}
       ></StylesColorStatus>
       <StylesColorStatus
         id="blue"
-        style={
-          confirmColor.blue !== 256
-            ? {
-                ...styles,
-                backgroundColor: `rgb(0,0,${confirmColor.blue})`,
-              }
-            : { backgroundColor: "#fff" }
-        }
+        style={{
+          ...styleIsCalulating,
+          backgroundColor: `rgb(0,0,${currentClr.blue})`,
+          outline: `3px solid ${
+            currentClr.blue !== confirmColor.blue ? "#d8ddc1" : "transparent"
+          }`,
+        }}
         disabled={isCalculating}
         onClick={colorClickHandler}
       ></StylesColorStatus>
