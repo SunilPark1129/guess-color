@@ -1,5 +1,5 @@
 # Guess The Color
-![cinema movie](https://user-images.githubusercontent.com/106734133/235772905-b4fb6dd1-9bd9-4a6a-a214-3aa29e08c4d5.jpg)
+![guess color](https://user-images.githubusercontent.com/106734133/235772905-b4fb6dd1-9bd9-4a6a-a214-3aa29e08c4d5.jpg)
 
 Go to website - [Link](https://sp-guess-color.netlify.app/)
 
