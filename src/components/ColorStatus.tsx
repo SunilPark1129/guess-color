@@ -6,35 +6,27 @@ const StyledColorBox = styled.section`
   flex-direction: column;
   gap: 1rem;
   transition: filter 0.3s;
-
-  &:nth-of-type(1) {
-    flex: 1 1 80%;
-  }
+  justify-content: space-around;
 `;
 
-const StylesColorStatus = styled.button`
-  width: 40px;
-  height: 40px;
-  border: 1px solid #e4e4e4;
-  outline: 1px solid transparent;
-  cursor: pointer;
+const StylesColorStatus = styled.div`
+  width: 30px;
+  height: 30px;
+  border: none;
+  border: 1px solid #efefef;
+  cursor: default !important;
   transition: filter 0.3s;
+  border-radius: 4px;
 `;
 
 type ContainerProps = {
   currentClr: { red: number; green: number; blue: number };
-  confirmColor: { red: number; green: number; blue: number };
-  isCalculating: boolean;
-  colorClickHandler: (event: React.MouseEvent<HTMLButtonElement>) => void;
   styleIsCalulating: React.CSSProperties;
   stylesHasStarted: React.CSSProperties;
 };
 
 const ColorStatus = ({
   currentClr,
-  confirmColor,
-  isCalculating,
-  colorClickHandler,
   styleIsCalulating,
   stylesHasStarted,
 }: ContainerProps) => {
@@ -45,36 +37,21 @@ const ColorStatus = ({
         style={{
           ...styleIsCalulating,
           backgroundColor: `rgb(${currentClr.red},0,0)`,
-          outline: `3px solid ${
-            currentClr.red !== confirmColor.red ? "#d8ddc1" : "transparent"
-          }`,
         }}
-        disabled={isCalculating}
-        onClick={colorClickHandler}
       ></StylesColorStatus>
       <StylesColorStatus
         id="green"
         style={{
           ...styleIsCalulating,
           backgroundColor: `rgb(0,${currentClr.green},0)`,
-          outline: `3px solid ${
-            currentClr.green !== confirmColor.green ? "#d8ddc1" : "transparent"
-          }`,
         }}
-        disabled={isCalculating}
-        onClick={colorClickHandler}
       ></StylesColorStatus>
       <StylesColorStatus
         id="blue"
         style={{
           ...styleIsCalulating,
           backgroundColor: `rgb(0,0,${currentClr.blue})`,
-          outline: `3px solid ${
-            currentClr.blue !== confirmColor.blue ? "#d8ddc1" : "transparent"
-          }`,
         }}
-        disabled={isCalculating}
-        onClick={colorClickHandler}
       ></StylesColorStatus>
     </StyledColorBox>
   );

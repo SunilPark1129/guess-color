@@ -17,7 +17,7 @@ const StyledColorBox = styled.section`
 
 const StyledColorInput = styled.input`
   width: 100%;
-  -webkit-appearance: none;
+  appearance: none;
   height: 40px;
   cursor: pointer;
   outline: 0px solid transparent;

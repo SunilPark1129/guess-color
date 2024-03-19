@@ -36,13 +36,9 @@ const Result = ({
         background: `linear-gradient(to right, rgb(${guessClr.red},${
           guessClr.green
         },${guessClr.blue}) 0% 40%, rgb(
-          ${
-            !hasMoved
-              ? "255,255,255"
-              : `${confirmColor.red === 256 ? 0 : confirmColor.red},
-                ${confirmColor.green === 256 ? 0 : confirmColor.green},
-                ${confirmColor.blue === 256 ? 0 : confirmColor.blue}`
-          }) 60% 100%)
+          ${`${confirmColor.red},
+                ${confirmColor.green},
+                ${confirmColor.blue}`}) 60% 100%)
           `,
       }}
     >

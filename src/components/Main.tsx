@@ -38,18 +38,11 @@ const initialColor: Colors = {
   blue: 255,
 };
 
-const initialColorConfirm: Colors = {
-  red: 256,
-  green: 256,
-  blue: 256,
-};
-
 const initialBool: boolean = false;
 const initialNumber: number = 0;
 
 const Main = () => {
   const [currentClr, setCurrentClr] = useState(initialColor);
-  const [confirmColor, setConfirmColor] = useState(initialColorConfirm);
   const [guessClr, setGuessClr] = useState(initialColor);
 
   const [hasMoved, setHasMoved] = useState(initialBool);
@@ -66,32 +59,15 @@ const Main = () => {
     colorChange({ name: name, value: Number(value), id: "preview" });
   }
 
-  function colorClickHandler(e: React.MouseEvent<HTMLButtonElement>): void {
-    const { id } = e.currentTarget;
-    if (!hasStarted) {
-      return;
-    }
-    colorChange({ name: id, id: "confirm" });
-    !hasMoved && setHasMoved(true);
-  }
-
   function colorChange(payload: Payload): void {
-    if (payload.id === "preview") {
-      setCurrentClr((prev) => ({
-        ...prev,
-        [payload.name]: payload.value,
-      }));
-    } else if (payload.id === "confirm") {
-      setConfirmColor((prev) => ({
-        ...prev,
-        [payload.name]: currentClr[payload.name],
-      }));
-    }
+    setCurrentClr((prev) => ({
+      ...prev,
+      [payload.name]: payload.value,
+    }));
   }
 
   function resetColors(): void {
     setCurrentClr(initialColor);
-    setConfirmColor(initialColorConfirm);
     setHasMoved(initialBool);
     setScore(initialNumber);
   }
@@ -117,25 +93,14 @@ const Main = () => {
   }
 
   function submitClickHandler(): void {
-    if (
-      confirmColor.red === 256 ||
-      confirmColor.green === 256 ||
-      confirmColor.blue === 256
-    ) {
-      return;
-    }
-
-    const rangeOne = Math.max(
-      0,
-      100 - Math.abs(confirmColor.red - guessClr.red)
-    );
+    const rangeOne = Math.max(0, 100 - Math.abs(currentClr.red - guessClr.red));
     const rangeTwo = Math.max(
       0,
-      100 - Math.abs(confirmColor.green - guessClr.green)
+      100 - Math.abs(currentClr.green - guessClr.green)
     );
     const rangeThree = Math.max(
       0,
-      100 - Math.abs(confirmColor.blue - guessClr.blue)
+      100 - Math.abs(currentClr.blue - guessClr.blue)
     );
 
     const value = Math.round((rangeOne + rangeTwo + rangeThree) / 3);
@@ -180,7 +145,7 @@ const Main = () => {
 
   return (
     <StyledMain>
-      <Guide />
+      {/* <Guide /> */}
       <InputBox
         currentClr={currentClr}
         isCalculating={isCalculating}
@@ -190,16 +155,13 @@ const Main = () => {
       />
       <ColorStatus
         currentClr={currentClr}
-        confirmColor={confirmColor}
-        isCalculating={isCalculating}
-        colorClickHandler={colorClickHandler}
         styleIsCalulating={styleIsCalulating}
         stylesHasStarted={stylesHasStarted}
       />
       <Result
         hasMoved={hasMoved}
         guessClr={guessClr}
-        confirmColor={confirmColor}
+        confirmColor={currentClr}
         score={score}
       />
       <ButtonBox
